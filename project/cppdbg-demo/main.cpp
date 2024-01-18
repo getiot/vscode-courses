@@ -10,12 +10,14 @@ std::queue<int> dataQueue;
 std::mutex mutexForQueue;
 std::condition_variable cv;
 
+static int rangeMax = 100;
+
 // 生产者线程
 void producerThread()
 {
     while (true) {
         // 产生一个随机数字
-        int randomNumber = std::rand() % 100;
+        int randomNumber = std::rand() % rangeMax;
 
         {
             std::lock_guard<std::mutex> lock(mutexForQueue);
@@ -55,8 +57,12 @@ void consumerThread()
     }
 }
 
-int main() 
+int main(int argc, char *argv[])
 {
+    if (argc > 1) {
+        rangeMax = std::stoi(argv[1]);
+    }
+    
     // 设置随机数种子
     std::srand(std::time(0));
 
