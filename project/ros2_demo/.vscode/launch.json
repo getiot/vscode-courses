@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ROS: Launch",
+            "preLaunchTask": "build",
+            "type": "ros",
+            "request": "launch",
+            "target": "${workspaceFolder}/launch/start.py"
+        }
+    ]
+}
